@@ -1,0 +1,61 @@
+/* TicketDetails.css */
+.ticket-details-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.ticket-details-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ticket-details-table th, 
+.ticket-details-table td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.ticket-details-table th {
+    background-color: #007BFF;
+    color: white;
+}
+
+.ticket-details-edit-form label {
+    display: block;
+    margin: 10px 0;
+}
+
+.ticket-details-edit-form input,
+.ticket-details-edit-form button {
+    padding: 8px;
+    margin-top: 5px;
+    width: 95%;
+    box-sizing: border-box;
+}
+
+.ticket-details-edit-form button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto;
+    display: inline-block;
+}
+
+.ticket-details-edit-form button:hover {
+    background-color: #0056b3;
+}
+
+.ticket-details-edit-form .cancel-button {
+    background-color: #dc3545;
+}
+
+.ticket-details-edit-form .cancel-button:hover {
+    background-color: #c82333;
+}

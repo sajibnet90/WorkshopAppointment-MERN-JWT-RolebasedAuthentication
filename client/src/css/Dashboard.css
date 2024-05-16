@@ -1,0 +1,66 @@
+/* Dashboard container */
+.dashboard {
+    padding: 20px;
+    background-color: #f7f7f7;
+    min-height: 100vh;
+}
+
+/* Greeting message */
+.dashboard h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Button styles */
+.dashboard button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%; /* Makes the button full width */
+    max-width: 300px; /* Limits the maximum width */
+    margin-bottom: 20px;
+}
+
+/* Icon styles */
+.dashboard .fa-users,
+.dashboard .fa-ticket-alt,
+.dashboard .fa-calendar-alt {
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+/* Hover effect for buttons */
+.dashboard button:hover {
+    background-color: #5cb85c;
+    color: white;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Dropdown and calendar styles */
+.dashboard select,
+.dashboard .availability-calendar {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* Styles for the calendar header always visible */
+.dashboard .calendar-header {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+
+/* Apply custom styles for your AvailabilityCalendar component if needed */
