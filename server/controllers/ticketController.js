@@ -100,7 +100,7 @@ async function bookedDatesEmployee (req, res) {
         const employeeId = req.params.employeeId;  // Correctly accessing the employeeId from request parameters
         console.log("Fetching booked dates for employee ID:", employeeId);
 
-        const tickets = await Ticket.find({ employeeId: employeeId, employeeId: { $ne: null } }, 'bookedDate');
+        const tickets = await Ticket.find({ employeeId: employeeId});
         const bookedDates = tickets.map(ticket => ticket.bookedDate.toISOString().split('T')[0]);
         console.log("Booked dates found:", bookedDates);
 

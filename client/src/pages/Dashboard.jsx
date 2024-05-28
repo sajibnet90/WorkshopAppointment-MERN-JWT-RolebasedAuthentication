@@ -56,6 +56,7 @@ export default function Dashboard() {
             {!!user && (
                 <>
                     <h2>Hi, {user.name}!</h2>
+                    <h4>Role:{user.role}</h4>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
                         {user.username === 'admin' && (
                             <button onClick={() => navigate('/employee-management')}>
