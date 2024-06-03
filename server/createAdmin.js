@@ -9,8 +9,9 @@ dotenv.config(); // Load environment variables from .env file
 const createAdminUser = async () => {
     try {
         // Connect to MongoDB
-        await mongoose.connect("mongodb://127.0.0.1:27017/Workshop_database");
+        //("mongodb://127.0.0.1:27017/Workshop_database");
 
+        await mongoose.connect(process.env.MONGO_URI)
         // Check if an admin user already exists
         const existingAdmin = await UserAuthModel.findOne({ username: 'admin' });
         if (existingAdmin) {
