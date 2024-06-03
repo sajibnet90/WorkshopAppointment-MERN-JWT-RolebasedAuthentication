@@ -23,7 +23,10 @@ export function UserContextProvider({ children }) {
             }
         };
     
+        // Condition to prevent fetch on empty user or already fetched user data
+    if (!user) {
         fetchUser();
+    }
     }, [user]);
     
 
