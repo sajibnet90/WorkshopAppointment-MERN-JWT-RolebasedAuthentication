@@ -10,7 +10,7 @@ const app = express()
 
 // CORS options
 const corsOptions = {
-    origin: ['http://localhost', 'http://localhost:80', 'http://localhost:3000'],  // Allowed origins
+    origin: ['http://35.232.95.129','http://localhost', 'http://localhost:80', 'http://localhost:3000'],  // Allowed origins
     credentials: true,  // Allow cookies to be sent
     optionsSuccessStatus: 200 // For legacy browser support
 };
@@ -50,7 +50,8 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.get('*', (req, res) =>{
     res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 });
-
+//----
+app.options('*', cors(corsOptions));
 //----
 //mongoose.connect("mongodb://127.0.0.1:27017/Workshop_database")
 mongoose.connect(process.env.MONGO_URI)
