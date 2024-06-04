@@ -16,7 +16,7 @@ import TicketDetails from './pages/TicketDetails';  // The component for viewing
 
 
 
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = import.meta.env.VITE_APP_BACKEND;
 axios.defaults.withCredentials = true;
 
 function App() {
