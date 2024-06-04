@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  frontend:
+    container_name: frontend-server
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "80:80" # Map TCP traffic from port 80 on the host to port 80 in the container
+
+  backend:
+    container_name: backend-server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      - DOCKER_ENV=true
+      - MONGO_URI=mongodb://mongo:27017/myDatabase
+    ports:
+      - "5000:5000" # Map TCP traffic from port 5000 on the host to port 5000 in the container
+    depends_on:
+      - mongo
+    command: /bin/sh -c "node createAdmin.js && node index.js"
+
+
+  mongo:
+    image: mongo
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27018:27017" # Optional: expose this port to access MongoDB directly if needed
+
+volumes:
+  mongo-data: # Persistent volume for MongoDB data
