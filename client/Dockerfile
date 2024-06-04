@@ -1,6 +1,6 @@
 #file: client/Dockerfile
 # Use a node base image to build the React application
-FROM node:16 as build-stage
+FROM node:18 as build-stage
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
@@ -11,7 +11,7 @@ RUN npm run build
 
 
 # Set up the stage for serving the React application
-FROM node:16
+FROM node:18
 # Set the working directory to serve the app
 WORKDIR /app
 
