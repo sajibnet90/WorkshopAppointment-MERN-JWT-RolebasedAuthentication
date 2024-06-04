@@ -1,6 +1,6 @@
 ##file: server/Dockerfile
 
-FROM node:16
+FROM node:18
 
 # Set the working directory in the Docker container
 WORKDIR /app
