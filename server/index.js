@@ -8,30 +8,30 @@ const path = require('path');
 
 const app = express()
 
+// // CORS options
+// const corsOptions = {
+//     origin: ['http://35.232.95.129','http://35.232.95.129:5000','http://localhost', 'http://localhost:3000','http://localhost:5000',],  // Allowed origins
+//     credentials: true,  // Allow cookies to be sent
+//     optionsSuccessStatus: 200, 
+// };
+
+// app.use(cors(corsOptions));
+
 // CORS options
 const corsOptions = {
-    origin: ['http://35.232.95.129','http://localhost', 'http://localhost:80', 'http://localhost:3000'],  // Allowed origins
+    //origin: ['http://localhost'],
+    origin: process.env.CORS_ORIGIN || 'http://localhost',  // Use environment variable or default to 'http://localhost:5000'
     credentials: true,  // Allow cookies to be sent
-    optionsSuccessStatus: 200 // For legacy browser support
+    optionsSuccessStatus: 200, 
 };
 
 app.use(cors(corsOptions));
-
-// app.use(cors(
-//     {
-//         origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
-//         method: ["POST","GET"],
-//         credentials: true
-//     }
-// ))
-
 
 // ---Middlewares------------
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended:false}));
 const partRoutes = require('./routes/partRoutes');
-
 
 //routes paths
 app.use('/',require('./routes/authRoutes'))
@@ -45,29 +45,18 @@ app.use(partRoutes);
 //when frontend build (dist) is created to serve static frontend files for production
 // Serve static files from the React app build directory
 //only works on localmachine when both backend and frontend running on the same instance
+
 app.use(express.static(path.join(__dirname, '../client/dist')));
 // Handles any requests that don't match the ones above
 app.get('*', (req, res) =>{
-    res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+     res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 });
-<<<<<<< HEAD
 
-//----
 //mongoose.connect("mongodb://127.0.0.1:27017/Workshop_database")
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
 
-=======
-//----
-app.options('*', cors(corsOptions));
-//----
-//mongoose.connect("mongodb://127.0.0.1:27017/Workshop_database")
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log(err));
-
->>>>>>> main
 
 const port = process.env.PORT || 5000;
 app.listen(port,()=>console.log(`Server is running on port ${port}`))

@@ -14,9 +14,9 @@ import EmployeeManagement from './pages/EmployeeManagement';
 import TicketList from './pages/TicketList';  // Assuming TicketList is the new TicketManagement
 import TicketDetails from './pages/TicketDetails';  // The component for viewing ticket details
 
-
-
-axios.defaults.baseURL = import.meta.env.VITE_APP_BACKEND;
+//axios.defaults.baseURL = import.meta.env.VITE_APP_BACKEND;
+//axios.defaults.baseURL = 'http://35.232.95.129:5000';
+axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.withCredentials = true;
 
 function App() {
