@@ -10,7 +10,7 @@ const app = express()
 
 // CORS options
 const corsOptions = {
-    origin: ['http://35.232.95.129','http://localhost', 'http://localhost:80', 'http://localhost:3000'],  // Allowed origins
+    origin: ['http://35.232.95.129','http://35.232.95.129:5000','http://localhost','http://localhost:80', 'http://localhost:3000','http://localhost:5000','http://10.128.0.3', 'http://10.128.0.3:5000'],  // Allowed origins
     credentials: true,  // Allow cookies to be sent
     optionsSuccessStatus: 200 // For legacy browser support
 };
@@ -45,11 +45,13 @@ app.use(partRoutes);
 //when frontend build (dist) is created to serve static frontend files for production
 // Serve static files from the React app build directory
 //only works on localmachine when both backend and frontend running on the same instance
+
 app.use(express.static(path.join(__dirname, '../client/dist')));
 // Handles any requests that don't match the ones above
 app.get('*', (req, res) =>{
-    res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+     res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 });
+
 //----
 app.options('*', cors(corsOptions));
 //----

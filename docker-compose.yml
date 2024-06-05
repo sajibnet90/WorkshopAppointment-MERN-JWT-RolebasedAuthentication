@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80" # Map TCP traffic from port 80 on the host to port 80 in the container
+    networks:
+      - app-network
 
   backend:
     container_name: backend-server
@@ -21,7 +23,8 @@ services:
     depends_on:
       - mongo
     command: /bin/sh -c "node createAdmin.js && node index.js"
-
+    networks:
+      - app-network
 
   mongo:
     image: mongo
@@ -29,6 +32,12 @@ services:
       - mongo-data:/data/db
     ports:
       - "27018:27017" # Optional: expose this port to access MongoDB directly if needed
+    networks:
+      - app-network
 
 volumes:
   mongo-data: # Persistent volume for MongoDB data
+
+networks:
+  app-network:
+    driver: bridge
