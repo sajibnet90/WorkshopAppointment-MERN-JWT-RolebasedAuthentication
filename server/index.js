@@ -8,30 +8,30 @@ const path = require('path');
 
 const app = express()
 
+// // CORS options
+// const corsOptions = {
+//     origin: ['http://35.232.95.129','http://35.232.95.129:5000','http://localhost', 'http://localhost:3000','http://localhost:5000',],  // Allowed origins
+//     credentials: true,  // Allow cookies to be sent
+//     optionsSuccessStatus: 200, 
+// };
+
+// app.use(cors(corsOptions));
+
 // CORS options
 const corsOptions = {
-    origin: ['http://35.232.95.129','http://35.232.95.129:5000','http://localhost','http://localhost:80', 'http://localhost:3000','http://localhost:5000','http://10.128.0.3', 'http://10.128.0.3:5000'],  // Allowed origins
+    //origin: ['http://localhost'],
+    origin: process.env.CORS_ORIGIN || 'http://localhost',  // Use environment variable or default to 'http://localhost:5000'
     credentials: true,  // Allow cookies to be sent
-    optionsSuccessStatus: 200 // For legacy browser support
+    optionsSuccessStatus: 200, 
 };
 
 app.use(cors(corsOptions));
-
-// app.use(cors(
-//     {
-//         origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
-//         method: ["POST","GET"],
-//         credentials: true
-//     }
-// ))
-
 
 // ---Middlewares------------
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended:false}));
 const partRoutes = require('./routes/partRoutes');
-
 
 //routes paths
 app.use('/',require('./routes/authRoutes'))
@@ -52,9 +52,6 @@ app.get('*', (req, res) =>{
      res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 });
 
-//----
-app.options('*', cors(corsOptions));
-//----
 //mongoose.connect("mongodb://127.0.0.1:27017/Workshop_database")
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB connected'))
