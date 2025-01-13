@@ -19,7 +19,7 @@ services:
       - DOCKER_ENV=true
       - MONGO_URI=mongodb://mongo:27017/myDatabase
     ports:
-      - "5000:5000" # Map TCP traffic from port 5000 on the host to port 5000 in the container
+      - "5001:5001" # Map TCP traffic from port 5000 on the host to port 5000 in the container
     depends_on:
       - mongo
     command: /bin/sh -c "node createAdmin.js && node index.js"

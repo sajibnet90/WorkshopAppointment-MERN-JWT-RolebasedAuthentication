@@ -20,7 +20,7 @@ const app = express()
 // CORS options
 const corsOptions = {
     //origin: ['http://localhost'],
-    origin: process.env.CORS_ORIGIN || 'http://localhost',  // Use environment variable or default to 'http://localhost:5000'
+    origin: [process.env.CORS_ORIGIN || 'http://128.214.252.141:80','http://localhost'],
     credentials: true,  // Allow cookies to be sent
     optionsSuccessStatus: 200, 
 };
@@ -53,10 +53,14 @@ app.get('*', (req, res) =>{
 });
 
 //mongoose.connect("mongodb://127.0.0.1:27017/Workshop_database")
-mongoose.connect(process.env.MONGO_URI)
+// Determine the MongoDB URI based on the environment
+const mongoUri = process.env.NODE_ENV === 'production' ? process.env.MONGO_URI_PROD : process.env.MONGO_URI_DEV;
+
+mongoose.connect(mongoUri)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
 
 
 const port = process.env.PORT || 5000;
-app.listen(port,()=>console.log(`Server is running on port ${port}`))
+app.listen(port, '0.0.0.0', () => console.log(`Server is running on port ${port}`));
+//app.listen(port,()=>console.log(`Server is running on port ${port}`))
