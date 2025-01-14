@@ -15,7 +15,7 @@ import TicketList from './pages/TicketList';  // Assuming TicketList is the new 
 import TicketDetails from './pages/TicketDetails';  // The component for viewing ticket details
 
 axios.defaults.baseURL = 'http://128.214.252.141:5001';
-//axios.defaults.baseURL = 'http://localhost:5001';
+//axios.defaults.baseURL = 'http://localhost:5001'; //when testing locally
 axios.defaults.withCredentials = true;
 
 function App() {

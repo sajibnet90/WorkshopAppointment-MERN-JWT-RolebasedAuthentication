@@ -20,7 +20,7 @@ const app = express()
 // CORS options
 const corsOptions = {
     //origin: ['http://localhost'],
-    origin: [process.env.CORS_ORIGIN || 'http://128.214.252.141:80','http://localhost'],
+    origin: [process.env.CORS_ORIGIN || 'http://localhost', 'http://128.214.252.141:80'],
     credentials: true,  // Allow cookies to be sent
     optionsSuccessStatus: 200, 
 };
@@ -54,9 +54,11 @@ app.get('*', (req, res) =>{
 
 //mongoose.connect("mongodb://127.0.0.1:27017/Workshop_database")
 // Determine the MongoDB URI based on the environment
-const mongoUri = process.env.NODE_ENV === 'production' ? process.env.MONGO_URI_PROD : process.env.MONGO_URI_DEV;
+//const mongoUri = process.env.NODE_ENV === 'production' ? process.env.MONGO_URI_PROD : process.env.MONGO_URI_DEV;
+// Connect to MongoDB inside docker
+const mongoUri = process.env.MONGO_URI || 'mongodb://mongo:27017/myDatabase';
 
-mongoose.connect(mongoUri)
+mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
 

@@ -9,8 +9,12 @@ dotenv.config(); // Load environment variables from .env file
 const createAdminUser = async () => {
     try {
         // Connect to MongoDB
-        //("mongodb://127.0.0.1:27017/Workshop_database");
-        const mongoUri = process.env.NODE_ENV === 'production' ? process.env.MONGO_URI_PROD : process.env.MONGO_URI_DEV;
+        //when using local machine
+        //const mongoUri = process.env.NODE_ENV === 'production' ? process.env.MONGO_URI_PROD : process.env.MONGO_URI_DEV;
+        //when using docker
+        // Connect to MongoDB
+        const mongoUri = process.env.MONGO_URI || 'mongodb://mongo:27017/myDatabase';
+        await mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
         await mongoose.connect(mongoUri)
         // Check if an admin user already exists
