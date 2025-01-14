@@ -14,8 +14,10 @@ import EmployeeManagement from './pages/EmployeeManagement';
 import TicketList from './pages/TicketList';  // Assuming TicketList is the new TicketManagement
 import TicketDetails from './pages/TicketDetails';  // The component for viewing ticket details
 
-axios.defaults.baseURL = 'http://128.214.252.141:5001';
-//axios.defaults.baseURL = 'http://localhost:5001'; //when testing locally
+//axios.defaults.baseURL = 'http://128.214.252.141:5001';
+axios.defaults.baseURL = 'http://localhost:5001'; //when testing locally
+//axios.defaults.baseURL = 'http://backend-server:5001'; // Use the internal Docker network address
+
 axios.defaults.withCredentials = true;
 
 function App() {

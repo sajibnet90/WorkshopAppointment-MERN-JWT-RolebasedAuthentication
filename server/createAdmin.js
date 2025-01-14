@@ -12,9 +12,7 @@ const createAdminUser = async () => {
         //when using local machine
         //const mongoUri = process.env.NODE_ENV === 'production' ? process.env.MONGO_URI_PROD : process.env.MONGO_URI_DEV;
         //when using docker
-        // Connect to MongoDB
         const mongoUri = process.env.MONGO_URI || 'mongodb://mongo:27017/myDatabase';
-        await mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
         await mongoose.connect(mongoUri)
         // Check if an admin user already exists
