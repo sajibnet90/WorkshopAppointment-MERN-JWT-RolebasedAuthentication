@@ -20,7 +20,7 @@ const app = express()
 // CORS options
 const corsOptions = {
     //origin: ['http://localhost'],
-    origin: [process.env.CORS_ORIGIN || 'http://localhost', 'http://128.214.252.141:80'],
+    origin: [process.env.CORS_ORIGIN || 'http://localhost', 'http://128.214.252.141'],
     credentials: true,  // Allow cookies to be sent
     optionsSuccessStatus: 200, 
 };

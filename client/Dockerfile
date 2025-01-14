@@ -20,8 +20,8 @@ RUN npm install -g serve
 
 # Copy the build directory from the previous stage
 COPY --from=build-stage /app/dist ./dist
-# Expose port 80 for the web server
-EXPOSE 80
+# Expose port 80 for the web server, not needed when using docker-compose unless using a custom network
+#EXPOSE 80
 
 # Serve the React app using serve
 CMD ["serve", "-s", "dist", "-l", "80"]
