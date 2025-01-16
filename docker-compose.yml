@@ -9,6 +9,7 @@ services:
       - "80:80" # Map TCP traffic from port 80 on the host to port 80 in the container
     networks:
       - app-network
+    restart: always
 
   backend:
     container_name: backend-server
@@ -27,6 +28,7 @@ services:
     command: /bin/sh -c "node createAdmin.js && node index.js"
     networks:
       - app-network
+    restart: always
 
   mongo:
     container_name: mongo-server
@@ -37,6 +39,7 @@ services:
       - "27017:27017" # Optional: expose this port to access MongoDB directly if needed
     networks:
       - app-network
+    restart: always
 
 volumes:
   mongo-data: # Persistent volume for MongoDB data
