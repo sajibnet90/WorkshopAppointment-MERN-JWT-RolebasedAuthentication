@@ -1,0 +1,40 @@
+{
+    "AWSEBDockerrunVersion": "2",
+    "containerDefinitions": [
+      {
+        "name": "frontend",
+        "image": "sajibnet/frontend-image:latest",
+        "essential": true,
+        "memory": 512,
+        "portMappings": [
+          {
+            "hostPort": 3001,
+            "containerPort": 80
+          }
+        ]
+      },
+      {
+        "name": "backend",
+        "image": "sajibnet/backend-image:latest",
+        "essential": true,
+        "memory": 512,
+        "portMappings": [
+          {
+            "hostPort": 5001,
+            "containerPort": 5001
+          }
+        ],
+        "environment": [
+          { "name": "DOCKER_ENV", "value": "true" },
+          { "name": "MONGO_URI", "value": "mongodb+srv://ahsan:12345saj@cluster0.pljnklf.mongodb.net/myDatabase?retryWrites=true&w=majority&appName=Cluster0" },
+          { "name": "JWT_SECRET", "value": "secret" }
+        ],
+        "command": [
+          "/bin/sh",
+          "-c",
+          "node createAdmin.js && node index.js"
+        ]
+      }
+    ]
+  }
+  

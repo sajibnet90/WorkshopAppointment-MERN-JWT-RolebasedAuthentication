@@ -5,6 +5,7 @@ services:
     build:
       context: ./client 
       dockerfile: Dockerfile
+    image: sajibnet/frontend-image:latest
     ports:
       - "3001:80" # Map TCP traffic from port 80 on the host to port 80 in the container
     networks:
@@ -16,33 +17,36 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
+    image: sajibnet/backend-image:latest
     environment:
       - DOCKER_ENV=true
-      - MONGO_URI=mongodb://mongo:27017/myDatabase
+      # - MONGO_URI=mongodb://mongo:27017/myDatabase
+      - MONGO_URI=mongodb+srv://ahsan:12345saj@cluster0.pljnklf.mongodb.net/tryDatabase?retryWrites=true&w=majority&appName=Cluster0
       - JWT_SECRET=secret
     ports:
       - "5001:5001"
     depends_on:
-      - mongo
-      #- frontend
+      # - mongo
+      - frontend
     command: /bin/sh -c "node createAdmin.js && node index.js"
     networks:
       - app-network
     restart: always
 
-  mongo:
-    container_name: mongo-server
-    image: mongo
-    volumes:
-      - mongo-data:/data/db
-    ports:
-      - "27017:27017" # Optional: expose this port to access MongoDB directly if needed
-    networks:
-      - app-network
-    restart: always
+#when using mongoDB locally inside docker container
+#   mongo:
+#     container_name: mongo-server
+#     image: mongo
+#     volumes:
+#       - mongo-data:/data/db
+#     ports:
+#       - "27017:27017" # Optional: expose this port to access MongoDB directly if needed
+#     networks:
+#       - app-network
+#     restart: always
 
-volumes:
-  mongo-data: # Persistent volume for MongoDB data
+# volumes:
+#   mongo-data: # Persistent volume for MongoDB data
 
 networks:
   app-network:
